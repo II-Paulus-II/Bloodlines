@@ -1,0 +1,505 @@
+﻿## First set of effects are country scope 
+
+pass_down_achaemenid_effect = {
+    every_character = {
+        limit = {
+            OR = {
+                    exists = father
+                    exists = mother
+            }
+            any_parent = {
+                has_trait = achaemenid
+            }
+            NOT = {
+                has_trait = achaemenid
+            }
+        }
+        force_add_trait = achaemenid
+    }  
+}
+
+pass_down_aeacidae_effect = {
+    every_character = {
+        limit = {
+            OR = {
+                    exists = father
+                    exists = mother
+            }
+            any_parent = {
+                has_trait = aeacidae
+            }
+            NOT = {
+                has_trait = aeacidae
+            }
+        }
+        force_add_trait = aeacidae
+    }    
+}
+
+pass_down_agathocles_effect = {
+    every_character = {
+        limit = {
+            OR = {
+                    exists = father
+                    exists = mother
+            }
+            any_parent = {
+                has_trait = agathocles
+            }
+            NOT = {
+                has_trait = agathocles
+            }
+        }
+        force_add_trait = agathocles
+    }    
+}
+
+pass_down_agiad_effect = {
+    every_character = {
+        limit = {
+            OR = {
+                    exists = father
+                    exists = mother
+            }
+            any_parent = {
+                has_trait = agiad
+            }
+            NOT = {
+                has_trait = agiad
+            }
+        }
+        force_add_trait = agiad
+    }  
+}
+
+pass_down_alcimachid_effect = {
+    every_character = {
+        limit = {
+            OR = {
+                    exists = father
+                    exists = mother
+            }
+            any_parent = {
+                has_trait = alcimachid
+            }
+            NOT = {
+                has_trait = alcimachid
+            }
+        }
+        force_add_trait = alcimachid
+    }
+}
+
+pass_down_antigonids_effect = {
+    every_character = {
+        limit = {
+            OR = {
+                    exists = father
+                    exists = mother
+            }
+            any_parent = {
+                has_trait = antigonids
+            }
+            NOT = {
+                has_trait = antigonids
+            }
+        }
+        force_add_trait = antigonids
+    }
+}
+
+pass_down_antipatrid_effect = {
+      every_character = {
+        limit = {
+            OR = {
+                    exists = father
+                    exists = mother
+            }
+            any_parent = {
+                has_trait = antipatrid
+            }
+            NOT = {
+                has_trait = antipatrid
+            }
+        }
+        force_add_trait = antipatrid
+    }  
+}
+
+pass_down_argeads_effect = {
+      every_character = {
+        limit = {
+            OR = {
+                    exists = father
+                    exists = mother
+            }
+            any_parent = {
+                has_trait = argeads
+            }
+            NOT = {
+                has_trait = argeads
+            }
+        }
+        force_add_trait = argeads
+    }   
+}
+
+pass_down_arsaces_effect = {
+    every_character = {
+        limit = {
+            OR = {
+                    exists = father
+                    exists = mother
+            }
+            any_parent = {
+                has_trait = arsaces
+            }
+            NOT = {
+                has_trait = arsaces
+            }
+        }
+        force_add_trait = arsaces
+    }  
+}
+
+pass_down_atropates_effect = {
+    every_character = {
+        limit = {
+            OR = {
+                    exists = father
+                    exists = mother
+            }
+            any_parent = {
+                has_trait = atropates
+            }
+            NOT = {
+                has_trait = atropates
+            }
+        }
+        force_add_trait = atropates
+    }  
+}
+
+pass_down_barca_effect = {
+    every_character = {
+        limit = {
+            OR = {
+                    exists = father
+                    exists = mother
+            }
+            any_parent = {
+                has_trait = barca
+            }
+            NOT = {
+                has_trait = barca
+            }
+        }
+        force_add_trait = barca
+    }  
+}
+
+pass_down_brennus_effect = {
+    every_character = {
+        limit = {
+            OR = {
+                    exists = father
+                    exists = mother
+            }
+            any_parent = {
+                has_trait = brennus
+            }
+            NOT = {
+                has_trait = brennus
+            }
+        }
+        force_add_trait = brennus
+    }  
+}
+
+pass_down_claudii_effect = {
+    every_character = {
+        limit = {
+            OR = {
+                    exists = father
+                    exists = mother
+            }
+            any_parent = {
+                has_trait = claudii
+            }
+            NOT = {
+                has_trait = claudii
+            }
+        }
+        force_add_trait = claudii
+    }  
+}
+
+pass_down_cornelii_effect = {
+    every_character = {
+        limit = {
+            OR = {
+                    exists = father
+                    exists = mother
+            }
+            any_parent = {
+                has_trait = cornelii
+            }
+            NOT = {
+                has_trait = cornelii
+            }
+        }
+        force_add_trait = cornelii
+    }  
+}
+
+pass_down_demosthenid_effect = {
+    every_character = {
+        limit = {
+            OR = {
+                    exists = father
+                    exists = mother
+            }
+            any_parent = {
+                has_trait = demosthenid
+            }
+            NOT = {
+                has_trait = demosthenid
+            }
+        }
+        force_add_trait = demosthenid
+    }  
+}
+
+pass_down_diodotus_effect = {
+    every_character = {
+        limit = {
+            OR = {
+                    exists = father
+                    exists = mother
+            }
+            any_parent = {
+                has_trait = diodotus
+            }
+            NOT = {
+                has_trait = diodotus
+            }
+        }
+        force_add_trait = diodotus
+    }  
+}
+
+pass_down_fabii_effect = {
+    every_character = {
+        limit = {
+            OR = {
+                    exists = father
+                    exists = mother
+            }
+            any_parent = {
+                has_trait = fabii
+            }
+            NOT = {
+                has_trait = fabii
+            }
+        }
+        force_add_trait = fabii
+    }  
+}
+
+pass_down_illyrius_effect = {
+    every_character = {
+        limit = {
+            OR = {
+                    exists = father
+                    exists = mother
+            }
+            any_parent = {
+                has_trait = illyrius
+            }
+            NOT = {
+                has_trait = illyrius
+            }
+        }
+        force_add_trait = illyrius
+    }  
+}
+
+pass_down_lagids_effect = {
+      every_character = {
+        limit = {
+            OR = {
+                    exists = father
+                    exists = mother
+            }
+            any_parent = {
+                has_trait = lagids
+            }
+            NOT = {
+                has_trait = lagids
+            }
+        }
+        force_add_trait = lagids
+    }  
+}
+
+pass_down_maurya_effect = {
+    every_character = {
+        limit = {
+            OR = {
+                    exists = father
+                    exists = mother
+            }
+            any_parent = {
+                has_trait = maurya
+            }
+            NOT = {
+                has_trait = maurya
+            }
+        }
+        force_add_trait = maurya
+    }  
+}
+
+pass_down_mithridates_effect = {
+    every_character = {
+        limit = {
+            OR = {
+                    exists = father
+                    exists = mother
+            }
+            any_parent = {
+                has_trait = mithridates
+            }
+            NOT = {
+                has_trait = mithridates
+            }
+        }
+        force_add_trait = mithridates
+    }  
+}
+
+pass_down_orontid_effect = {
+    every_character = {
+        limit = {
+            OR = {
+                    exists = father
+                    exists = mother
+            }
+            any_parent = {
+                has_trait = orontid
+            }
+            NOT = {
+                has_trait = orontid
+            }
+        }
+        force_add_trait = orontid
+    }  
+}
+
+pass_down_seleucids_effect = {
+    every_character = {
+        limit = {
+            OR = {
+                    exists = father
+                    exists = mother
+            }
+            any_parent = {
+                has_trait = seleucids
+            }
+            NOT = {
+                has_trait = seleucids
+            }
+        }
+        force_add_trait = seleucids
+    }  
+}
+
+pass_down_sophytid_effect = yes = {
+    every_character = {
+        limit = {
+            OR = {
+                    exists = father
+                    exists = mother
+            }
+            any_parent = {
+                has_trait = sophytid
+            }
+            NOT = {
+                has_trait = sophytid
+            }
+        }
+        force_add_trait = sophytid
+    }  
+}
+
+pass_down_spartocid_effect = {
+    every_character = {
+        limit = {
+            OR = {
+                    exists = father
+                    exists = mother
+            }
+            any_parent = {
+                has_trait = spartocid
+            }
+            NOT = {
+                has_trait = spartocid
+            }
+        }
+        force_add_trait = spartocid
+    }  
+}
+
+pass_down_superbus_effect = {
+    every_character = {
+        limit = {
+            OR = {
+                    exists = father
+                    exists = mother
+            }
+            any_parent = {
+                has_trait = superbus
+            }
+            NOT = {
+                has_trait = superbus
+            }
+        }
+        force_add_trait = superbus
+    }  
+}
+
+pass_down_vercingetorix_effect = {
+      every_character = {
+        limit = {
+            OR = {
+                    exists = father
+                    exists = mother
+            }
+            any_parent = {
+                has_trait = vercingetorix
+            }
+            NOT = {
+                has_trait = vercingetorix
+            }
+        }
+        force_add_trait = vercingetorix
+    }    
+}
+
+pass_down_zadok_effect = {
+    every_character = {
+        limit = {
+            OR = {
+                    exists = father
+                    exists = mother
+            }
+            any_parent = {
+                has_trait = zadok
+            }
+            NOT = {
+                has_trait = zadok
+            }
+        }
+        force_add_trait = zadok
+    }  
+}
