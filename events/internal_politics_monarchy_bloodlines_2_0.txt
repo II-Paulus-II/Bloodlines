@@ -1,4 +1,390 @@
-﻿
+﻿## Bastard Events
+
+# Discreditable Dalliance
+ip_monarchy.36 = {
+	type = country_event
+	title = "ip_monarchy.36.t"
+	desc = "ip_monarchy.36.desc"
+	picture = greek_court
+	
+	left_portrait = current_ruler
+	left_portrait = consort
+	right_portrait = scope:bastard_mother
+	right_portrait = scope:bastard_child
+	
+	trigger = {  # Is there a married male monarch capable of affair?
+		is_monarchy = yes
+		has_land = yes
+		current_ruler = {
+			is_male = yes
+			is_married = yes
+			NOR = {
+				has_trait = devout
+				has_trait = chaste
+				has_trait = incapable
+				has_trait = shrewd
+				has_trait = self_controlled
+			}
+		}
+		exists = current_ruler.spouse
+		current_ruler.spouse = { 
+			is_alive = yes
+			employer = root
+		}
+		NOR = { 
+			has_variable = mon_36_cooldown 
+			has_variable = ip_mon_36_flag
+		}
+		any_neighbour_country = { exists = yes }
+	}
+	
+	immediate = {
+		set_variable = { # Toggle
+			name = mon_36_cooldown 
+			days = 18250 # 50 years
+		}
+		current_ruler = { save_scope_as = bastard_ruler } # Save ruler as bastard father
+		hidden_effect = {
+			create_character = { # Create wench bastard mother
+				female = yes
+				age = 21
+				force_add_trait = lustful
+				save_scope_as = bastard_mother
+			}
+			create_character = { # Create bastard
+				culture = scope:bastard_ruler.culture
+				religion = scope:bastard_ruler.religion
+				female = no
+				mother = scope:bastard_mother
+				father = scope:bastard_ruler
+				age = 0
+				no_stats = yes
+				no_traits = yes
+				save_scope_as = bastard_child
+			}
+			scope:bastard_child = {
+				trigger_event = {
+					id = character_events.35
+				}
+			}
+		}
+	}
+	
+	option = { # Make this go away
+		name = "ip_monarchy.36.a"
+		scope:bastard_ruler.spouse = { add_loyalty = loyalty_consort_reassured }
+		hidden_effect = { # Ruler does not know for sure if child is really gone for good
+			random_neighbour_country = { save_scope_as = ip_monarchy_36_neighbor_scope } # Pick neighbor for child
+			random_list = { # Child disappeared to MER and killed to hide death notice or banished to neighbour to possibly return in 18-22 years
+				2 = {
+					scope:bastard_child = {
+						death = {
+							death_reason = death_obscurity
+							killer = scope:bastard_ruler
+							silent = yes
+						}
+					}
+					scope:bastard_mother = { # Mother disappeared to MER and killed, to hide death notice for ruler
+						death = {
+							death_reason = death_obscurity
+							killer = scope:bastard_ruler
+							silent = yes
+						}
+					}
+				}
+				2 = {
+					set_variable = { 
+						name = ip_mon_36_flag 
+						value = root.current_ruler
+					}
+					scope:bastard_child = { 
+						set_variable = { 
+							name = ip_mon_36_child_flag 
+							value = root.current_ruler
+						}
+						banish = scope:ip_monarchy_36_neighbor_scope
+						trigger_event = {
+							id = ip_monarchy.69
+							days = { 6570 8030 } # 18-22 years
+						}
+					}
+					scope:bastard_mother = { banish = scope:ip_monarchy_36_neighbor_scope }
+					hidden_effect = {
+						scope:ip_monarchy_36_neighbor_scope = {
+							scope:bastard_child = {
+								set_as_minor_character = this
+							}
+						}
+					}
+				}
+			}
+		}
+		custom_tooltip = ip_monarchy.36.at
+		add_treasury = { # Price of thugs
+			value = has_monthly_income
+			multiply = -1
+		}
+		add_tyranny = tyranny_medium # Tyranny questioned
+		add_legitimacy = subtract_legitimacy_small # Legitimacy pondered
+	}
+	
+	option = { # The child will be supported, and the mother silenced
+		name = "ip_monarchy.36.b"
+		scope:bastard_ruler.spouse = { add_loyalty = loyalty_consort_reassured_2 }
+		add_treasury = { # Price of diapers and tablet
+			value = has_monthly_income
+			multiply = -2
+		}
+		add_legitimacy = subtract_legitimacy_medium # Legitimacy mulled over
+		hidden_effect = { # Child may reappear in 18-22 years
+			scope:bastard_child = {
+				set_as_minor_character = this
+			}
+			random = {
+				chance = 50
+				set_variable = { 
+					name = ip_mon_36_flag 
+					value = root.current_ruler
+				}
+				scope:bastard_child = {
+					set_variable = { 
+						name = ip_mon_36_child_flag 
+						value = root.current_ruler
+					}
+					trigger_event = {
+						id = ip_monarchy.69
+						days = { 6570 8030 } # 18-22 years
+					}
+				}
+			}
+		}
+	}
+	
+	option = { # He has royal blood
+		name = "ip_monarchy.36.c"
+		scope:bastard_ruler = { add_popularity = subtract_popularity_medium }
+		scope:bastard_ruler.spouse = { add_loyalty = loyalty_bastard_legitimized }
+		hidden_effect = { 
+			if = { # Ruler's other children not happy
+				limit = {
+					scope:bastard_ruler = { num_of_children > 0 }
+				}
+				scope:bastard_ruler = {
+					every_child = {
+						limit = {
+							trigger_if = {
+								limit = {
+									employer.current_ruler = { is_minor_character = no }
+								}
+								from_ruler_family = yes
+							}
+							age >= 10
+							NOT = { this = scope:bastard_child }
+						}
+						add_loyalty = loyalty_bastard_legitimized
+					}
+				}
+			}
+			if = { # Successors unhappy
+				limit = {
+					any_character = { is_successor = yes }
+				}
+				every_successor = { add_loyalty = loyalty_bastard_legitimized }
+			}
+		}
+		scope:bastard_child = { # adopted
+			hidden_effect = { add_popularity = subtract_popularity_huge }
+			##bastard_major_bloodline_effect = yes # Give bloodline of ruler if relevant
+		}
+		custom_tooltip = ip_monarchy.36.ct1
+		add_legitimacy = subtract_legitimacy_large # Legitimacy questioned
+	}
+	
+	option = { # Ruler marries mother of child
+		name = "ip_monarchy.36.d"
+		scope:bastard_ruler = { add_popularity = subtract_popularity_huge }
+		scope:bastard_ruler.spouse = { add_loyalty = loyalty_old_consort }
+		hidden_effect = {
+			if = {	
+				limit = {
+					AND = {
+						exists = scope:bastard_mother
+						scope:bastard_mother = { can_get_rivals = yes }
+					}
+					AND = {
+						exists = scope:bastard_ruler.spouse
+						scope:bastard_ruler.spouse = { can_get_rivals = yes }
+					}	
+				}
+				scope:bastard_ruler.spouse = { add_rival = scope:bastard_mother }
+			}
+			if = { # Rulers other children unhappy
+				limit = {
+					scope:bastard_ruler = { num_of_children > 0 }
+				}
+				scope:bastard_ruler = {
+					every_child = {
+						limit = {
+							trigger_if = {
+								limit = {
+									employer.current_ruler = { is_minor_character = no }
+								}
+								from_ruler_family = yes
+							}
+							age >= 10
+							NOT = { this = scope:bastard_child }
+						}
+						add_loyalty = loyalty_bastard_legitimized_pretender
+					}
+				}
+			}
+			if = { # Successors unhappy
+				limit = {
+					any_character = { is_successor = yes }
+				}
+				every_successor = { add_loyalty = loyalty_bastard_legitimized_pretender }
+			}
+			scope:bastard_ruler = {
+				if = {
+					limit = {
+						is_married = yes
+					}
+					divorce_character = spouse
+				}
+			}
+		}
+		scope:bastard_child = { # adopted
+			hidden_effect = { add_popularity = subtract_popularity_huge }
+			##bastard_major_bloodline_effect = yes # Give bloodline of ruler if relevant
+		}
+		scope:bastard_ruler = { marry_character = scope:bastard_mother }
+		custom_tooltip = ip_monarchy.36.dt
+		add_legitimacy = subtract_legitimacy_huge # Legitimacy damaged
+	}
+}
+
+# Discreditable Dalliance II
+ip_monarchy.37 = {
+	type = country_event
+	title = "ip_monarchy.37.t"
+	desc = "ip_monarchy.37.desc"
+	picture = greek_court	
+	
+	left_portrait = scope:bastard_ruler
+	left_portrait = scope:bastard_ruler.spouse
+	right_portrait = scope:bastard_child
+	right_portrait = scope:bastard_mother
+	
+	trigger = { # Previous characters exist and still relevant
+		is_monarchy = yes
+		has_land = yes
+		has_variable = ip_mon_36_flag
+	}
+	
+	immediate = {
+		root.var:ip_mon_36_flag = { save_scope_as = bastard_ruler }
+		root.var:ip_mon_36_child_scope_flag = { save_scope_as = bastard_child }
+		root.var:ip_mon_36_mother_scope_flag = { save_scope_as = bastard_mother }
+		hidden_effect = { ## Almost certainly unnessesary
+			scope:bastard_child = {
+				trigger_event = {
+					id = character_events.35
+				}
+			}
+		}
+	}			
+	
+	option = { # Acknowledge child as ruler's
+		name = "ip_monarchy.37.a"
+		hidden_effect = {
+			if = { # Ruler's other children unhappy
+				limit = {
+					scope:bastard_ruler = { num_of_children > 0 }
+				}
+				every_character = {
+					limit = {
+						is_child_of = scope:bastard_ruler	
+						trigger_if = {
+							limit = {
+								employer.current_ruler = {
+									is_minor_character = no
+								}
+							}
+							from_ruler_family = yes
+						}
+						age >= 10
+						NOT = { this = scope:bastard_child }
+					}
+					add_loyalty = loyalty_bastard_legitimized
+				}
+			}
+			if = { # Successor's unhappy
+				limit = {
+					any_character = { is_successor = yes }
+				}
+				every_successor = { add_loyalty = loyalty_bastard_legitimized_pretender }
+			}
+		}
+		if = { # Child's mother happy
+			limit = {
+				scope:bastard_mother = {
+					exists = yes
+					is_alive = yes
+					employer = root
+				}
+			}
+			scope:bastard_mother = { add_loyalty = loyalty_new_consort }
+		}
+		if = { # Ruler's wife unhappy
+			limit = {
+				scope:bastard_ruler = { is_married = yes }
+				exists = consort
+				consort = { is_alive = yes }
+			}
+			consort = { add_loyalty = loyalty_old_consort }
+		}
+		scope:bastard_child = { # Child adopted into ruler family and happy
+			add_loyalty = loyalty_legitimized_bastard
+			##bastard_major_bloodline_effect = yes # Give bloodline of ruler if relevant
+			set_family = scope:bastard_ruler.family
+		}
+		custom_tooltip = ip_monarchy.37.at1
+		add_legitimacy = subtract_legitimacy_large # Legitimacy knocked
+	} 
+	
+	option = { # Deny child is ruler's
+		name = "ip_monarchy.37.b"
+		if = {
+			limit = {
+				scope:bastard_mother = {
+					exists = yes
+					is_alive = yes
+					employer = root
+				}
+			}
+			scope:bastard_mother = { add_loyalty = loyalty_bastard_denied } # Mother unhappy
+		}
+		if = { # Ruler's wife unhappy
+			limit = {
+				scope:bastard_ruler = { is_married = yes }
+			}
+			every_character = {
+				limit = { is_spouse_of = scope:bastard_ruler }
+				add_loyalty = loyalty_denied_bastard
+			}
+		}
+		scope:bastard_child = { add_loyalty = loyalty_bastard_denied } # Child unhappy
+		add_legitimacy = subtract_legitimacy_medium # Legitimacy shaken
+	}
+	
+	after = {
+		remove_variable = ip_mon_36_flag
+		scope:bastard_child = { remove_variable = ip_mon_36_child_flag }
+	}
+}
+
+
+
 # Indecent Affair II - Child born
 ip_monarchy.39 = {
 	type = country_event
@@ -46,7 +432,11 @@ ip_monarchy.39 = {
 			}
 		}
 		hidden_effect = { 
-			scope:affair_child = { bastard_major_bloodline_effect = yes }
+			scope:affair_child = { 
+				trigger_event = {
+					id = character_events.35
+				}
+			}
 		}
 	}
 	

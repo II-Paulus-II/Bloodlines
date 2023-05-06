@@ -1,0 +1,44 @@
+﻿impregnateb = {
+
+	on_other_nation = no
+	on_own_nation = yes
+	
+	sound = "event:/SFX/UI/Character/sfx_ui_character_smear_reputation"
+	
+	potential_trigger = {
+		hidden:scope:target = {
+			is_alive = yes
+			is_spouse_of = scope:actor.current_ruler
+		}
+	}
+	
+	
+	allowed_trigger = {
+		hidden:scope:actor = {
+			is_ai = no
+		}
+		hidden:scope:target = {
+			is_adult = yes
+		}
+		scope:target = {
+			is_spouse_of = scope:actor.current_ruler
+			is_pregnant = no
+		}
+	}
+	
+
+	
+	effect = {
+		scope:actor.current_ruler = {
+			trigger_event = {
+				id = loveb.1
+			}
+		}
+		scope:target = {
+			make_pregnant = {
+				father = scope:actor.current_ruler
+			}
+		}
+	}
+	
+}

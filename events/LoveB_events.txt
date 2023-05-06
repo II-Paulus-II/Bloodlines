@@ -1,0 +1,16 @@
+﻿namespace = loveb
+
+loveb.1 = {
+	type = character_event
+	title = "loveb.1.t"
+	desc = "loveb.1.desc"
+	picture = impregnateb
+	
+	option = {
+		name = "loveb.1.a" #yes
+		ai_chance = {
+			factor = 100
+		}
+	}
+	
+}

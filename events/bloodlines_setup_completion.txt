@@ -3,7 +3,7 @@
 bloodlines_setup_completion.1 = {
 	type = country_event
 	hidden = yes
-	
+
 	immediate = {
 		pass_down_achaemenid_effect = yes
 		pass_down_aeacidae_effect = yes
@@ -33,92 +33,50 @@ bloodlines_setup_completion.1 = {
 		pass_down_superbus_effect = yes
 		pass_down_vercingetorix_effect = yes
 		pass_down_zadok_effect = yes
+
+		if = {
+			limit = {
+				NOT = {
+					has_variable = run_two_more_times
+				} 
+				NOT = {
+					has_variable = run_one_more_time
+				}
+				NOT = {
+					has_variable = run_once
+				}
+			}
+			set_variable = run_two_more_times
+		}
+
+		else_if = {
+			limit = {
+				has_variable = run_two_more_times
+			}
+			set_variable = run_one_more_time
+			remove_variable = run_two_more_times
+		}
+
+		else_if = {
+			limit = {
+				has_variable = run_one_more_time
+			}
+			set_variable = run_once
+			remove_variable = run_one_more_time
+		}
 
 		hidden_effect = {
-			trigger_event = {
-				id = bloodlines_setup_completion.2
+			if = {
+				limit = {
+					OR = {
+						has_variable = run_two_more_times
+						has_variable = run_one_more_time
+					}
+				}
+				trigger_event = {
+					id = bloodlines_setup_completion.1
+				}
 			}
 		}
-	}
-}
-
-bloodlines_setup_completion.2 = {
-	type = country_event
-	hidden = yes
-	
-	immediate = {
-		
-		pass_down_achaemenid_effect = yes
-		pass_down_aeacidae_effect = yes
-		pass_down_agathocles_effect = yes
-		pass_down_agiad_effect = yes
-		pass_down_alcimachid_effect = yes
-		pass_down_antipatrid_effect = yes
-		pass_down_antigonids_effect = yes
-		pass_down_argeads_effect = yes
-		pass_down_arsaces_effect = yes
-		pass_down_atropates_effect = yes
-		pass_down_barca_effect = yes
-		pass_down_brennus_effect = yes
-		pass_down_claudii_effect = yes
-		pass_down_cornelii_effect = yes
-		pass_down_demosthenid_effect = yes
-		pass_down_diodotus_effect = yes
-		pass_down_fabii_effect = yes
-		pass_down_illyrius_effect = yes
-		pass_down_lagids_effect = yes
-		pass_down_maurya_effect = yes
-		pass_down_mithridates_effect = yes
-		pass_down_orontid_effect = yes
-		pass_down_seleucids_effect = yes
-		pass_down_sophytid_effect = yes
-		pass_down_spartocid_effect = yes
-		pass_down_superbus_effect = yes
-		pass_down_vercingetorix_effect = yes
-		pass_down_zadok_effect = yes
-
-		hidden_effect = {
-			trigger_event = {
-				id = bloodlines_setup_completion.3
-			}
-		}
-	}
-}
-
-bloodlines_setup_completion.3 = {
-	type = country_event
-	hidden = yes
-	
-	immediate = {
-
-		pass_down_achaemenid_effect = yes
-		pass_down_aeacidae_effect = yes
-		pass_down_agathocles_effect = yes
-		pass_down_agiad_effect = yes
-		pass_down_alcimachid_effect = yes
-		pass_down_antipatrid_effect = yes
-		pass_down_antigonids_effect = yes
-		pass_down_argeads_effect = yes
-		pass_down_arsaces_effect = yes
-		pass_down_atropates_effect = yes
-		pass_down_barca_effect = yes
-		pass_down_brennus_effect = yes
-		pass_down_claudii_effect = yes
-		pass_down_cornelii_effect = yes
-		pass_down_demosthenid_effect = yes
-		pass_down_diodotus_effect = yes
-		pass_down_fabii_effect = yes
-		pass_down_illyrius_effect = yes
-		pass_down_lagids_effect = yes
-		pass_down_maurya_effect = yes
-		pass_down_mithridates_effect = yes
-		pass_down_orontid_effect = yes
-		pass_down_seleucids_effect = yes
-		pass_down_sophytid_effect = yes
-		pass_down_spartocid_effect = yes
-		pass_down_superbus_effect = yes
-		pass_down_vercingetorix_effect = yes
-		pass_down_zadok_effect = yes
-
 	}
 }

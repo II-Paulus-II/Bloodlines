@@ -2,6 +2,6 @@
 yearly_country_pulse = {
 
 	events = {
-		bloodlines_setup_completion.3
+		bloodlines_setup_completion.1
 	}
 }
