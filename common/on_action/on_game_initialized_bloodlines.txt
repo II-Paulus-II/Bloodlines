@@ -3,6 +3,9 @@
 on_game_initialized = {
 
 	events = {
+		### Event to set Bloodlines Installed variable [NOT IN THE EFFECTS FOR GOOD REASON]
+		bloodlines_installed.1
+		### THIS IS FOR MODS TO CHECK 
 		bloodlines_startup.1 #Sparta
 		bloodlines_startup.2 #Rome
 		bloodlines_startup.3 #Athens

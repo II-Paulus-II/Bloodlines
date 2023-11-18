@@ -1,0 +1,12 @@
+namespace = bloodlines_installed
+
+bloodlines_installed.1 = {
+    type = country_event 
+    hidden = yes
+	
+    immediate = {
+        set_global_variable = bloodlines_installed
+
+    }
+
+}

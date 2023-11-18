@@ -42,9 +42,6 @@ bloodlines_setup_completion.1 = {
 				NOT = {
 					has_variable = run_one_more_time
 				}
-				NOT = {
-					has_variable = run_once
-				}
 			}
 			set_variable = run_two_more_times
 		}
