@@ -1,38 +1,14 @@
-﻿namespace = bloodlines_setup_completion
+﻿## If adding bloodlines no changes to this file are needed. Change bloodline_setup_effect in file common/scripted_effects/00_bloodlines_inheritance_inv.txt 
+
+namespace = bloodlines_setup_completion
 
 bloodlines_setup_completion.1 = {
 	type = country_event
 	hidden = yes
 
 	immediate = {
-		pass_down_achaemenid_effect = yes
-		pass_down_aeacidae_effect = yes
-		pass_down_agathocles_effect = yes
-		pass_down_agiad_effect = yes
-		pass_down_alcimachid_effect = yes
-		pass_down_antipatrid_effect = yes
-		pass_down_antigonids_effect = yes
-		pass_down_argeads_effect = yes
-		pass_down_arsaces_effect = yes
-		pass_down_atropates_effect = yes
-		pass_down_barca_effect = yes
-		pass_down_brennus_effect = yes
-		pass_down_claudii_effect = yes
-		pass_down_cornelii_effect = yes
-		pass_down_demosthenid_effect = yes
-		pass_down_diodotus_effect = yes
-		pass_down_fabii_effect = yes
-		pass_down_illyrius_effect = yes
-		pass_down_lagids_effect = yes
-		pass_down_maurya_effect = yes
-		pass_down_mithridates_effect = yes
-		pass_down_orontid_effect = yes
-		pass_down_seleucids_effect = yes
-		pass_down_sophytid_effect = yes
-		pass_down_spartocid_effect = yes
-		pass_down_superbus_effect = yes
-		pass_down_vercingetorix_effect = yes
-		pass_down_zadok_effect = yes
+
+		bloodline_setup_effect = yes
 
 		if = {
 			limit = {
@@ -41,6 +17,9 @@ bloodlines_setup_completion.1 = {
 				} 
 				NOT = {
 					has_variable = run_one_more_time
+				}
+				NOT = {
+					has_variable = run_once
 				}
 			}
 			set_variable = run_two_more_times

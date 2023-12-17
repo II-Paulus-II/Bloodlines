@@ -3,10 +3,29 @@ namespace = bloodlines_installed
 bloodlines_installed.1 = {
     type = country_event 
     hidden = yes
-	
-    immediate = {
-        set_global_variable = bloodlines_installed
 
+    immediate = {
+        ## set_global_variable = bloodlines_installed dont need
+        hidden_effect = {
+            trigger_event = {
+                id = bloodlines_installed.2
+                days = 1
+            }
+        }
     }
 
+}
+
+bloodlines_installed.2 = { ##Literally checking if invictus is installed
+    type = country_event
+    title = invictus_is_installed_desc
+    desc = invictus_is_installed_desc
+
+    trigger = {
+        has_global_variable = is_playing_invictus
+    }
+
+    option = {
+        name = invictus_is_installed_option_1
+    }
 }

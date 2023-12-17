@@ -3,7 +3,7 @@
 on_game_initialized = {
 
 	events = {
-		### Event to set Bloodlines Installed variable [NOT IN THE EFFECTS FOR GOOD REASON]
+		### Event to set Bloodlines Installed with invictus variable [NOT IN THE EFFECTS FOR GOOD REASON]
 		bloodlines_installed.1
 		### THIS IS FOR MODS TO CHECK 
 		bloodlines_startup.1 #Sparta
@@ -29,6 +29,17 @@ on_game_initialized = {
 		bloodlines_startup.21 #Thrace
 		bloodlines_startup.22 #Arvernia
 		bloodlines_startup.23 #Carthage
+
+		##Invictus Events
+		bloodlines_startup.24 #Pandya
+		bloodlines_startup.25 #Chola
+		bloodlines_startup.26 #Chera
+		bloodlines_startup.27 #Kalinga
+		bloodlines_startup.28 #Porus
+		bloodlines_startup.29 # Vijaya
+		bloodlines_startup.30 # Vijaya Ruhunu
+		bloodlines_startup.31 # Zipoetes
+		bloodlines_startup.32 # Samaria
 		
 	}
 }
